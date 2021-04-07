@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:sch="http://registraduria.gov.co/commoncannonical/v3/schemas"
+           targetNamespace="http://registraduria.gov.co/commoncannonical/v3/schemas"
+           elementFormDefault="qualified">
+
+    <xs:element name="getCustomerStatusRq">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="HeaderRequest" type="sch:HeaderRequest"/>
+                <xs:element name="IssuedIdent" type="sch:IssuedIdent"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getCustomerStatusRs">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="HeaderResponse" type="sch:HeaderResponse"/>
+                <xs:element name="DocumentStatus" type="sch:DocumentStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="HeaderRequest">
+        <xs:sequence>
+            <xs:element name="MessageHeader" type="sch:MessageHeader" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="HeaderResponse">
+        <xs:sequence>
+            <xs:element name="MessageHeader" type="sch:MessageHeader" minOccurs="0"/>
+            <xs:element name="Status" type="sch:Status" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="Status">
+        <xs:sequence>
+            <xs:element name="statusCode" type="xs:string"/>
+            <xs:element name="serverStatusCode" type="xs:int"/>
+            <xs:element name="severity" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DocumentStatus">
+        <xs:sequence>
+            <xs:element name="DocumentStatusCode" type="xs:int"/>
+            <xs:element name="userFolder" type="xs:string"/>
+            <xs:element name="internalFileName" type="xs:string"/>
+            <xs:element name="fileName" type="xs:string"/>
+            <xs:element name="Token" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MessageHeader">
+        <xs:sequence>
+            <xs:element name="MessageKey" type="sch:MessageKey" minOccurs="0"/>
+            <xs:element name="MessageInfo" type="sch:MessageInfo" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MessageKey">
+        <xs:sequence>
+            <xs:element name="requestVersion" type="xs:string" minOccurs="0"/>
+            <xs:element name="requestUUID" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MessageInfo">
+        <xs:sequence>
+            <xs:element name="dateTime" type="xs:string"/>
+            <xs:element name="systemId" type="xs:string"/>
+            <xs:element name="originatorName" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="IssuedIdent">
+        <xs:sequence>
+            <xs:element name="issuedIdentType" type="xs:int"/>
+            <xs:element name="issuedIdentValue" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
